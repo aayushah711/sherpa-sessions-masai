@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            min-height: 100px;
+            background-color: aqua;
+            border: red dashed;
+            min-width: 100px;
+            
+        }
+
+
+        .box > ul > :first-child {
+            color: gray;
+            list-style-type: none;
+            font-family: monospace;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .box > ul > :first-child ~ * {
+            list-style-type: none;
+            font-family: monospace;
+            margin: 10px 0;
+            font-weight: bold;
+            color: green
+        }
+
+        
+
+
+
+        
+
+
+        /* > child */
+        /* + adjacent sibling*/
+        /* ~ general sibling */
+        /*   all descendants */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li class="">FEES & OTHER CHARGES</li>
+            <li>Setup Fee</li>
+            <li>Annual Maintenance</li>
+            <li>Minimum Commitment</li>
+        </ul>
+    </div>
+    
+</body>
+</html>
