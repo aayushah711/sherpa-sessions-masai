@@ -1,5 +1,5 @@
 testCase = `
-2019 tue
+2020 wed
 `;
 
 function runProgram(input) {
@@ -11,20 +11,20 @@ function runProgram(input) {
 	// Days array
 	var days = daysArr();
 
-	init = dayIndex(init, days);
+	firstDayOfMonthIndex = dayIndex(init, days);
 
 	var output = {};
 
 	// Calendar generation
 	for (var monthIndex = 0; monthIndex < 12; monthIndex++) {
-		[ init, daysObj ] = generateMonth(init, monthIndex);
+		[ firstDayOfMonthIndex, daysObj ] = generateMonth(firstDayOfMonthIndex, monthIndex);
 		output[months[monthIndex][0]] = daysObj;
 	}
 
 	console.log(output);
 	return output;
 
-	function generateMonth(initDay, month) {
+	function generateMonth(firstDayOfMonthIndex, month) {
 		var daysObj = {
 			sun: [],
 			mon: [],
@@ -35,12 +35,13 @@ function runProgram(input) {
 			sat: []
 		};
 
+		// pushes date in daysObj from 1 till end date of month
 		for (var i = 1; i <= months[month][1]; i++) {
-			var day = days[initDay % 7];
+			var day = days[firstDayOfMonthIndex % 7];
 			daysObj[day].push(i);
-			initDay++;
+			firstDayOfMonthIndex++;
 		}
-		return [ initDay, daysObj ];
+		return [ firstDayOfMonthIndex, daysObj ];
 	}
 }
 
