@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+    <style>
+        /* Important flex properties */
+        
+        /* // Parent
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        //children
+        flex: {grow} {shrink} {basis} */
+
+        .box1{
+            width: 150vh;
+            border: 1px black solid;
+            border-radius: 5px;
+            height: 130px;
+            margin: auto;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+
+        }
+        .box1 * {
+            flex: 1 0 50px;
+            margin: 0 10px;
+        }
+        .pic {
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            border: 1px black solid;
+            flex: none;
+        }
+
+        .name {
+            border: 1px black solid;
+            height: 100px;
+            flex-basis: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="pic"></div>
+        <div class="name">
+            <div>First Name Last Name</div>
+            <div>Bangalore</div>
+        </div>
+        <div class="karma">
+            <div>500</div>
+            <div>Karma</div>
+        </div>
+        <div class="followers">
+            <div>12.2K</div>
+            <div>Followers</div>
+        </div>
+        <div class="posts">
+            <div>52</div>
+            <div>Posts</div>
+        </div>
+        <button class="follow">Follow</button>
+
+    </div>
+    
+    <div class="box1">
+        <div class="pic"></div>
+        <div class="name">
+            <div>First Name Last Name</div>
+            <div>Bangalore</div>
+        </div>
+        <div class="karma">
+            <div>500</div>
+            <div>Karma</div>
+        </div>
+        <div class="followers">
+            <div>12.2K</div>
+            <div>Followers</div>
+        </div>
+        <div class="posts">
+            <div>52</div>
+            <div>Posts</div>
+        </div>
+        <button class="follow">Follow</button>
+
+    </div>
+
+
+</body>
+</html>
