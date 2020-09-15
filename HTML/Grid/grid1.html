@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid 1</title>
+    <style>
+        .parent {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            grid-template-rows: auto auto;
+            border: red dashed;
+            grid-gap: 10px;
+            /* grid-template: "a b b b"
+                           "c d e f"; */
+            
+            /* "a b b b"
+            "a c d e" */
+        }
+
+        .parent> div {
+            background-color: green;
+            height: 100px;
+            /* width:  100px; */
+            /* margin: 10px; */
+        }
+
+        /* row start / col start/ row end/ col end */
+        #div1 {
+            grid-area: 1/1/span 2/2;
+            /* grid-area: a; */
+            height: auto !important;
+        }
+        #div2 {
+            /* grid-area: 1 /2 /2 /4 ;  */
+            grid-area: 1/ 2/ 2/ span 3;
+            /* grid-area: b */
+        }
+        /* #div3 {
+            grid-area: c;
+        }
+        #div4 {
+            grid-area: d;
+        }
+        #div5 {
+            grid-area: e;
+        }
+        #div6 {
+            grid-area: f;
+        } */
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div id="div1">1</div>
+        <div id="div2">2</div>
+        <div id="div3">3</div>
+        <div id="div4">4</div>
+        <div id="div5">5</div>
+        <div id="div6">6</div>
+        
+    </div>
+</body>
+</html>
