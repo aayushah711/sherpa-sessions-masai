@@ -1,0 +1,188 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form > div {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <div>
+                <label for="name">
+                    Name:
+                    <input type="text" name="name" placeholder="Add a name" id="name" autofocus/>
+                </label>
+            </div>
+            <div>
+                <label for="quantity">
+                    Quantity:
+                    <input type="number" name="quantity" placeholder="Add quantity" id="quantity" />
+                </label>
+            </div>
+            <div>
+                <input type="submit" name="submit" id="submit" value="Submit">
+            </div>
+        </form>
+        <div id="res"></div>
+    </div>
+    <script>
+        var data = [
+            {id: 0, name: "bread", quantity: "1"},
+            {id: 1, name: "bread", quantity: "1"}
+        ]
+        var counter = 1
+
+        function handleSubmit(e){
+            e.preventDefault()
+            var payload = {
+                id: counter++,
+                name: document.getElementById("name").value,
+                quantity: document.getElementById("quantity").value,
+            }
+            console.log(payload)
+            data.push(payload)
+            console.log(data)
+            renderData()
+        }
+
+        function handleEdit(e) {
+            console.log("inside handleEdit")
+            var parent = e.target.parentNode
+            var id = e.target.parentNode.id
+
+
+            parent.innerHTML = ""
+
+            var name
+            var qty
+
+            data.map(function(item){
+                    if (item.id === Number(id)){
+                        name = item.name
+                        qty = item.quantity
+                    }
+                })
+
+            var editForm = document.createElement("form")
+
+            var label = document.createElement("label")
+            var input = document.createElement("input")
+            input.type = "name"
+            input.name = "name"
+            input.value = name//old name
+            input.placeholder = "Add new name"
+
+            label.append(input)
+            editForm.append(label)
+
+            var label = document.createElement("label")
+            var input = document.createElement("input")
+            input.type = "number"
+            input.name = "qty"
+            input.value = qty//old qty
+            input.placeholder = "Add new quantity"
+            label.append(input)
+            editForm.append(label)
+
+            var saveBtn = document.createElement("input")
+            saveBtn.type = "submit"
+            saveBtn.value = "Save"
+            editForm.append(saveBtn)
+
+            editForm.addEventListener("submit", handleSave)
+
+            var cancelEditBtn = document.createElement("button")
+            cancelEditBtn.addEventListener("click", handleCancelEdit)
+            cancelEditBtn.textContent = "Cancel"
+
+
+            parent.append(editForm,cancelEditBtn)
+
+
+            function handleSave(e){
+                console.log("inside handle save")
+                e.preventDefault()
+
+                data.map(function(item){
+                    if (item.id === Number(id)){
+                        var form = parent.firstChild
+                        console.log(form)
+                        item.name = form.name.value
+                        item.quantity = form.qty.value
+                        console.log(data)
+                    }
+                })
+
+                renderData()
+
+            }
+
+            function handleCancelEdit(){
+                renderData()
+            }
+
+        }
+
+        function handleDelete(e) {
+            var id = Number(e.target.parentNode.id)
+            e.target.parentNode.remove()
+
+            var newData = data.filter(function (item) {
+                console.log(item.id, id )
+                if (item.id === Number(id) ){
+                    return false
+                }
+                else {
+                    return true
+                }
+            })
+
+            data = newData
+
+        }
+
+        function renderData() {
+            var res = document.getElementById("res")
+            res.innerHTML = ""
+
+            for (var i=0;i<data.length;i++){
+                console.log("inside render")
+                var mainDiv = document.createElement("div")
+
+                var nameDiv = document.createElement("div")
+                nameDiv.textContent = data[i].name
+
+                var qtyDiv = document.createElement("div")
+                qtyDiv.textContent = data[i].quantity
+
+                var editBtn = document.createElement("button")
+                editBtn.innerHTML = "Edit" 
+                editBtn.addEventListener("click", handleEdit)
+
+                var deleteBtn = document.createElement("button")
+                deleteBtn.innerHTML = "Delete" 
+                deleteBtn.addEventListener("click", handleDelete)
+
+                mainDiv.setAttribute("id", data[i].id)
+                mainDiv.append(nameDiv,qtyDiv,editBtn,deleteBtn)
+                res.append(mainDiv)
+            }
+        }
+
+        window.onload = function(){
+
+            let submit = document.getElementById("submit")
+            submit.addEventListener("click", handleSubmit)
+
+            renderData()
+
+        }
+
+    </script>
+</body>
+</html>
